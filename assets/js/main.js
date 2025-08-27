@@ -7,15 +7,12 @@ window.addEventListener('load', function () {
 });
 
 // スライド
-// =============================
-// ① スライドを物理的に大量クローン
-// =============================
 (function ensurePlentySlides(){
   const wrapper = document.querySelector('.product .swiper-wrapper');
   if (!wrapper) return;
 
   const originals = Array.from(wrapper.children);
-  const MIN = 100; // ← 100枚以上あればほぼ無限に見える
+  const MIN = 100; 
 
   while (wrapper.children.length < MIN) {
     for (const node of originals) {
@@ -27,56 +24,13 @@ window.addEventListener('load', function () {
   }
 })();
 
-// =============================
-// ② Swiper 初期化（クローン後！）
-// =============================
-// const swiper = new Swiper('.product .product-slider', {
-//   slidesPerView: 'auto',
-//   spaceBetween: 24,
-//   loop: true,
-//   speed: 800,
-//   centeredSlides: false,
-
-//   navigation: {
-//     nextEl: '.product .swiper-button-next',
-//     prevEl: '.product .swiper-button-prev',
-//   },
-
-//   // ← 追加（スマホは1枚、PCは従来どおり）
-//   breakpoints: {
-//     0: {                    // ～768px（スマホ）
-//       slidesPerView: 1,
-//       spaceBetween: 16,
-//       centeredSlides: true  // 1枚を中央に
-//     },
-//     769: {                  // 769px～（タブレット/PC）
-//       slidesPerView: 'auto',
-//       spaceBetween: 24,
-//       centeredSlides: false
-//     }
-//   },
-
-//   // 以降は今のまま
-//   loopedSlides: 50,
-//   loopAdditionalSlides: 50,
-//   loopedSlidesLimit: false,
-//   loopPreventsSliding: false,
-//   watchOverflow: false,
-//   resistanceRatio: 0,
-//   roundLengths: true,
-//   preloadImages: true,
-//   watchSlidesProgress: true,
-//   observer: true,
-//   observeParents: true,
-//   updateOnWindowResize: true,
-// });
 
 // Swiper 初期化
 const swiper = new Swiper('.product .product-slider', {
   slidesPerView: 'auto',   // ← 常に auto にする（固定幅はCSSで管理）
   spaceBetween: 24,
   loop: true,
-  speed: 800,
+  speed: 200,
   centeredSlides: false,
 
   navigation: {
@@ -90,7 +44,8 @@ const swiper = new Swiper('.product .product-slider', {
       centeredSlides: true,   // 中央に配置
       spaceBetween: 16,
     },
-    769: { // PC
+    769: { 
+      // PC
       slidesPerView: 'auto',
       centeredSlides: false,
       spaceBetween: 24,
@@ -100,8 +55,8 @@ const swiper = new Swiper('.product .product-slider', {
   loopedSlides: 50,
   loopAdditionalSlides: 50,
   loopedSlidesLimit: false,
-  loopPreventsSliding: false,
   watchOverflow: false,
+  loopPreventsSliding: true, // ← 左矢印でガクつきやすい場合ON
 
   resistanceRatio: 0,
   roundLengths: true,
