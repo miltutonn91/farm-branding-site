@@ -6,66 +6,110 @@ window.addEventListener('load', function () {
   }, 1500); // 1.5秒後にフェードアウト
 });
 
-// スライド
-(function ensurePlentySlides() {
-  const wrapper = document.querySelector('.product .swiper-wrapper');
-  if (!wrapper) return;
-
-  const originals = Array.from(wrapper.children);
-  const MIN = 100;
-
-  while (wrapper.children.length < MIN) {
-    for (const node of originals) {
-      const clone = node.cloneNode(true);
-      clone.removeAttribute('id'); // id重複防止
-      wrapper.appendChild(clone);
-      if (wrapper.children.length >= MIN) break;
-    }
-  }
-})();
-
+// ==============================
 // Swiper 初期化
-const swiper = new Swiper('.product .product-slider', {
-  slidesPerView: 'auto', // ← 常に auto にする（固定幅はCSSで管理）
-  spaceBetween: 24,
-  loop: true,
-  speed: 200,
-  centeredSlides: false,
+// ==============================
+const productSliderEl = document.querySelector('.product-slider');
+const productWrapper = document.querySelector('.product-slider .swiper-wrapper');
 
-  navigation: {
-    nextEl: '.product .swiper-button-next',
-    prevEl: '.product .swiper-button-prev',
-  },
+if (productSliderEl && productWrapper) {
+  // 元のスライドを保存
+  const originalSlides = Array.from(productWrapper.children);
+  const originalCount = originalSlides.length;
 
-  breakpoints: {
-    0: {
-      // スマホでもカード幅はCSS固定なので 1 枚ずつ見える
-      slidesPerView: 1.2,
-      centeredSlides: true, // 中央に配置
-      spaceBetween: 16,
+  // 既存の中身をいったん空にする
+  productWrapper.innerHTML = '';
+
+  // 同じスライドをたくさん複製して、前後に余裕を作る
+  const repeatCount = 9;
+
+  for (let i = 0; i < repeatCount; i++) {
+    originalSlides.forEach((slide) => {
+      productWrapper.appendChild(slide.cloneNode(true));
+    });
+  }
+
+  const startIndex = originalCount * 3;
+  const resetAfterIndex = originalCount * 6;
+
+  const productSwiper = new Swiper('.product-slider', {
+    slidesPerView: 'auto',
+    slidesPerGroup: 1,
+    spaceBetween: 16,
+    centeredSlides: true,
+
+    // Swiperのloopは使わない
+    loop: false,
+
+    // 真ん中あたりから開始
+    initialSlide: startIndex,
+
+    // 1つずつ動く速さ
+    speed: 900,
+
+    autoplay: false,
+
+    allowTouchMove: true,
+    grabCursor: true,
+    touchRatio: 1.2,
+    threshold: 5,
+
+    breakpoints: {
+      769: {
+        centeredSlides: false,
+        spaceBetween: 24,
+      },
     },
-    769: {
-      // PC
-      slidesPerView: 'auto',
-      centeredSlides: false,
-      spaceBetween: 24,
-    },
-  },
 
-  loopedSlides: 50,
-  loopAdditionalSlides: 50,
-  loopedSlidesLimit: false,
-  watchOverflow: false,
-  loopPreventsSliding: true, // ← 左矢印でガクつきやすい場合ON
+    watchSlidesProgress: true,
+    roundLengths: true,
+    updateOnWindowResize: true,
+    observer: true,
+    observeParents: true,
+  });
 
-  resistanceRatio: 0,
-  roundLengths: true,
-  preloadImages: true,
-  watchSlidesProgress: true,
-  observer: true,
-  observeParents: true,
-  updateOnWindowResize: true,
-});
+  let productSlideTimer;
+
+  function moveProductSlider() {
+    // かなり後ろまで進んだら、同じ並びの真ん中へ一瞬で戻す
+    // 見た目は同じ商品順なので、戻ったことは分かりにくい
+    if (productSwiper.activeIndex >= resetAfterIndex) {
+      productSwiper.slideTo(startIndex, 0, false);
+    }
+
+    productSwiper.slideNext(900);
+  }
+
+  function startProductSlideTimer() {
+    clearInterval(productSlideTimer);
+
+    productSlideTimer = setInterval(() => {
+      moveProductSlider();
+    }, 2500);
+  }
+
+  startProductSlideTimer();
+
+  // 手でスワイプしたあとも止めずに再開
+  productSwiper.on('touchEnd', function () {
+    startProductSlideTimer();
+  });
+
+  productSwiper.on('sliderMove', function () {
+    clearInterval(productSlideTimer);
+  });
+
+  productSwiper.on('transitionEnd', function () {
+    startProductSlideTimer();
+  });
+
+  // タブを戻した時も再開
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) {
+      startProductSlideTimer();
+    }
+  });
+}
 
 // お問い合わせフォーム
 
@@ -246,7 +290,7 @@ $('a[href^="#"]').on('click', function (e) {
 });
 
 // ==============================
-// FAQ アコーディオン（初期は閉じる）
+// FAQ アコーディオン
 // ==============================
 $('.accordion-answer').each(function () {
   $(this).removeClass('open').css('max-height', '0');
@@ -255,20 +299,29 @@ $('.accordion-answer').each(function () {
 $('.question-list')
   .off('click')
   .on('click', function () {
-    const $answer = $(this).next('.accordion-answer'); // ← 直後の答えだけ取る
+    const $question = $(this);
+    const $answer = $question.next('.accordion-answer');
     const isOpen = $answer.hasClass('open');
 
     if (isOpen) {
-      $answer.removeClass('open').css('max-height', '0');
-      $(this).removeClass('open');
+      // 今の高さを一度固定
+      $answer.css('max-height', $answer.prop('scrollHeight') + 'px');
+
+      // 次の描画で閉じる
+      requestAnimationFrame(() => {
+        $answer.css('max-height', '0');
+        $answer.removeClass('open');
+        $question.removeClass('open');
+      });
     } else {
-      const h = $answer.prop('scrollHeight');
-      $answer.addClass('open').css('max-height', h + 'px');
-      $(this).addClass('open');
+      $answer.addClass('open');
+      $question.addClass('open');
+
+      // 開く高さを指定
+      $answer.css('max-height', $answer.prop('scrollHeight') + 'px');
     }
   });
 
-// リサイズ時：開いている答えの高さを再計算
 $(window).on('resize', function () {
   $('.accordion-answer.open').each(function () {
     $(this).css('max-height', $(this).prop('scrollHeight') + 'px');
