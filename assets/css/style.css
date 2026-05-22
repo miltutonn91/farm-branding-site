@@ -1450,8 +1450,19 @@ button[type='submit']:disabled {
     padding-top: 0;
   }
 
-  .form-complete__br {
-    display: none;
+  .contact {
+    padding-right: 10%;
+    padding-left: 10%;
+  }
+
+  .contact-frame {
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .form-complete {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 
