@@ -26,8 +26,6 @@ https://github.com/miltutonn91/farm-branding-site
 | CSS | レイアウト・装飾・レスポンシブ対応 |
 | JavaScript | スライダーやハンバーガーメニューなどのUI実装 |
 | Figma | デザインカンプの確認 |
-| Photoshop | 画像確認・調整 |
-| Illustrator | 素材確認・調整 |
 | Git / GitHub | バージョン管理・ソースコード管理 |
 | GitHub Pages | サイト公開 |
 
