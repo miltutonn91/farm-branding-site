@@ -894,7 +894,7 @@ button[type='submit']:disabled {
   margin: 20px;
   padding: 52px 20px 56px;
   border-radius: 10px;
-  background-color: rgba(227, 235, 218, 0.7);
+  background-color: rgba(227, 235, 218, 0.35);
   text-align: center;
 }
 
@@ -1318,7 +1318,7 @@ button[type='submit']:disabled {
 
   .form-complete {
     margin: 32px;
-    padding: 72px 24px 80px;
+    padding: 48px 24px 56px;
   }
 
   .form-complete__title {
