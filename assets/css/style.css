@@ -894,7 +894,7 @@ button[type='submit']:disabled {
   margin: 20px;
   padding: 52px 20px 56px;
   border-radius: 10px;
-  background-color: rgba(227, 235, 218, 0.35);
+  background-color: rgba(227, 235, 218, 0.25);
   text-align: center;
 }
 
