@@ -513,9 +513,17 @@ img {
 .grapes {
   display: none !important;
   position: absolute;
-  top: 442px;
+  top: 100%;
   right: 0;
+  z-index: 1;
+  width: clamp(120px, 15vw, 230px);
+  transform: translateY(-50%);
   pointer-events: none;
+}
+
+.grapes img {
+  width: 100%;
+  height: auto;
 }
 
 /* ========================================
@@ -613,7 +621,7 @@ img {
 }
 
 .breakfast img {
-  width: auto;
+  width: clamp(180px, 26vw, 360px);
   max-width: none;
   height: auto;
 }
@@ -688,9 +696,17 @@ img {
 .Brussels {
   display: none !important;
   position: absolute;
-  top: 647px;
+  top: 100%;
   right: 0;
+  z-index: 1;
+  width: clamp(120px, 15vw, 230px);
+  transform: translateY(-50%);
   pointer-events: none;
+}
+
+.Brussels img {
+  width: 100%;
+  height: auto;
 }
 
 /* ========================================
@@ -928,7 +944,7 @@ button[type='submit']:disabled {
 }
 
 .form-complete__br {
-  display: none;
+  display: block;
 }
 
 /* ========================================
@@ -982,7 +998,7 @@ button[type='submit']:disabled {
 .nav-list-footer {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 26px;
   align-items: center;
   justify-content: center;
   margin-top: 33px;
@@ -997,6 +1013,7 @@ button[type='submit']:disabled {
   position: absolute;
   bottom: 0;
   left: 0;
+  width: clamp(110px, 17vw, 230px);
   pointer-events: none;
 }
 
@@ -1005,6 +1022,7 @@ button[type='submit']:disabled {
   position: absolute;
   right: 0;
   bottom: 0;
+  width: clamp(110px, 17vw, 230px);
   pointer-events: none;
 }
 
@@ -1214,10 +1232,6 @@ button[type='submit']:disabled {
     gap: 120px;
   }
 
-  .grapes {
-    display: block !important;
-  }
-
   /* FAQ */
   .FAQ {
     padding: 80px 18%;
@@ -1333,13 +1347,9 @@ button[type='submit']:disabled {
     font-size: 1.6rem;
   }
 
-  .form-complete__br {
-    display: block;
-  }
-
   /* Footer */
   .footer {
-    padding: 24px 25% 97px;
+    padding: 24px clamp(24px, 12vw, 25%) 97px;
   }
 
   .logo-1-f,
@@ -1364,10 +1374,17 @@ button[type='submit']:disabled {
 
   .nav-list-footer {
     flex-direction: row;
+    gap: 40px;
   }
 
-  .berry,
-  .cow {
+  .nav-list-footer a {
+    white-space: nowrap;
+  }
+
+  .grapes,
+  .cow,
+  .Brussels,
+  .berry {
     display: block !important;
   }
 }
@@ -1467,13 +1484,6 @@ button[type='submit']:disabled {
 }
 
 @media screen and (min-width: 769px) and (max-width: 970px) {
-  .grapes,
-  .cow,
-  .Brussels,
-  .berry {
-    width: 180px;
-  }
-
   .About-image-1 {
     max-width: 480px !important;
   }
@@ -1486,6 +1496,19 @@ button[type='submit']:disabled {
 /* ========================================
   Small SP
 ======================================== */
+@media screen and (max-width: 544px) {
+  .form-complete__br {
+    display: none;
+  }
+
+  .form-complete__text {
+    width: fit-content;
+    max-width: 260px;
+    margin: 0 auto;
+    text-align: left;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .title-1 {
     font-size: 2.2rem;
