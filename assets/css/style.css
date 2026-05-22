@@ -903,7 +903,7 @@ button[type='submit']:disabled {
   display: inline-block;
   margin-bottom: 30px;
   color: #4f6848;
-  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
   font-size: 2rem;
   font-weight: 500;
   letter-spacing: 0.08em;
