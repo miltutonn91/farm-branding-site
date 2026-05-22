@@ -119,6 +119,7 @@ if (productSliderEl && productWrapper) {
 
   const msgBox = document.getElementById('formMessage');
   const iframe = document.getElementById('hidden_iframe');
+  const formTitle = document.querySelector('.contact-form');
 
   const nameInput = form.querySelector('[name="entry.1425804916"]');
   const addrInput = form.querySelector('[name="entry.1129032173"]');
