@@ -229,14 +229,19 @@ if (productSliderEl && productWrapper) {
     const onLoaded = function () {
       iframe.removeEventListener('load', onLoaded);
 
+      if (formTitle) {
+        formTitle.style.display = 'none';
+      }
+
       form.innerHTML = `
-      <div class="form-complete">
-        <p class="form-complete__title">送信が完了しました</p>
-        <p class="form-complete__text">
-          お問い合わせいただき、ありがとうございます。内容を確認のうえ、折り返しご連絡いたします。
-        </p>
-      </div>
-    `;
+        <div class="form-complete">
+          <p class="form-complete__title">送信が完了しました</p>
+          <p class="form-complete__text">
+            お問い合わせいただき、ありがとうございます。<br class="form-complete__br">
+            内容を確認のうえ、折り返しご連絡いたします。
+          </p>
+        </div>
+      `;
     };
 
     iframe.addEventListener('load', onLoaded);
