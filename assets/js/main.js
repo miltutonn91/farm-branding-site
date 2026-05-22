@@ -228,14 +228,16 @@ if (productSliderEl && productWrapper) {
 
     const onLoaded = function () {
       iframe.removeEventListener('load', onLoaded);
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = '送信する';
-      }
-      form.reset();
-      [nameInput, addrInput, emailInput, telInput, textInput].forEach((el) => el && clearError(el));
-      if (radioGroup) clearError(radioGroup);
-      showFormMessage('success', '送信が完了しました。ありがとうございます！');
+
+      form.innerHTML = `
+    <div class="form-complete">
+      <p class="form-complete__title">送信が完了しました</p>
+      <p class="form-complete__text">
+        お問い合わせいただき、ありがとうございます。<br>
+        内容を確認のうえ、折り返しご連絡いたします。
+      </p>
+    </div>
+  `;
     };
     iframe.addEventListener('load', onLoaded);
 

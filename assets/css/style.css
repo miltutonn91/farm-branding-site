@@ -889,6 +889,24 @@ button[type='submit']:disabled {
   border-radius: 6px;
 }
 
+.form-complete {
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.form-complete__title {
+  margin-bottom: 20px;
+  color: #4c382a;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.form-complete__text {
+  color: #4c382a;
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
 /* ========================================
   Footer
 ======================================== */
@@ -1276,6 +1294,18 @@ button[type='submit']:disabled {
   .radio-group {
     gap: 10px;
     width: auto;
+  }
+
+  .form-complete {
+    padding: 70px 20px;
+  }
+
+  .form-complete__title {
+    font-size: 2.4rem;
+  }
+
+  .form-complete__text {
+    font-size: 1.6rem;
   }
 
   /* Footer */
