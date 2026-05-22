@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
   const loading = document.getElementById('loading');
   setTimeout(() => {
     loading.classList.add('fade-out');
-  }, 500); // 1.5秒後にフェードアウト
+  }, 100);
 });
 
 // ==============================
@@ -230,15 +230,15 @@ if (productSliderEl && productWrapper) {
       iframe.removeEventListener('load', onLoaded);
 
       form.innerHTML = `
-    <div class="form-complete">
-      <p class="form-complete__title">送信が完了しました</p>
-      <p class="form-complete__text">
-        お問い合わせいただき、ありがとうございます。<br>
-        内容を確認のうえ、折り返しご連絡いたします。
-      </p>
-    </div>
-  `;
+      <div class="form-complete">
+        <p class="form-complete__title">送信が完了しました</p>
+        <p class="form-complete__text">
+          お問い合わせいただき、ありがとうございます。内容を確認のうえ、折り返しご連絡いたします。
+        </p>
+      </div>
+    `;
     };
+
     iframe.addEventListener('load', onLoaded);
 
     form.submit(); // ← hidden_iframe に送信
