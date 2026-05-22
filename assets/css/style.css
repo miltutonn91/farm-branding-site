@@ -904,7 +904,7 @@ button[type='submit']:disabled {
   margin-top: 0;
   color: #4f6848;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0.08em;
 }
@@ -1322,7 +1322,7 @@ button[type='submit']:disabled {
   }
 
   .form-complete__title {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
   }
 
   .form-complete__text {
