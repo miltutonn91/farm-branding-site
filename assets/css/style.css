@@ -901,7 +901,7 @@ button[type='submit']:disabled {
 .form-complete__title {
   position: relative;
   display: inline-block;
-  margin-bottom: 30px;
+  margin-top: 0;
   color: #4f6848;
   font-weight: 700;
   font-size: 2rem;
