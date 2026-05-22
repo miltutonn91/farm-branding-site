@@ -1333,6 +1333,10 @@ button[type='submit']:disabled {
     font-size: 1.6rem;
   }
 
+  .form-complete__br {
+    display: block;
+  }
+
   /* Footer */
   .footer {
     padding: 24px 25% 97px;
