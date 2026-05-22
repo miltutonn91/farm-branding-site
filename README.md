@@ -18,7 +18,7 @@ https://github.com/miltutonn91/farm-branding-site
 
 ---
 
-## 主要技術
+## 主要技術・ツール
 
 | 技術 | 用途 |
 |---|---|
