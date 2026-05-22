@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
   const loading = document.getElementById('loading');
   setTimeout(() => {
     loading.classList.add('fade-out');
-  }, 1500); // 1.5秒後にフェードアウト
+  }, 500); // 1.5秒後にフェードアウト
 });
 
 // ==============================
