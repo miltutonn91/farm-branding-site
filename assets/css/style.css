@@ -131,7 +131,7 @@ img {
   line-height: 1.5;
   background-color: #fff;
   white-space: nowrap;
-  font-size: 3.2rem;
+  font-size: 2.6rem;
 }
 
 /* ========================================
@@ -374,7 +374,7 @@ img {
   flex: none !important;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 20px;
   position: relative;
 }
 
@@ -382,7 +382,7 @@ img {
   width: 100% !important;
   height: auto !important;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 32px;
 }
 
 .About-image-1,
@@ -392,10 +392,6 @@ img {
   max-width: 100% !important;
   margin: 0 auto 20px;
   aspect-ratio: auto;
-}
-
-.About-image-1 {
-  border-radius: 25px;
 }
 
 .About-image-2 {
@@ -1066,13 +1062,13 @@ button[type='submit']:disabled {
     left: auto;
     gap: 21px;
     writing-mode: vertical-rl;
-    font-size: 3.2rem;
+    font-size: 2.4rem;
     letter-spacing: 0.5rem;
   }
 
   .title-1 {
     padding: 10px 2%;
-    font-size: inherit;
+    font-size: 3.4rem;
   }
 
   /* Navigation */
@@ -1117,65 +1113,80 @@ button[type='submit']:disabled {
 
   /* About */
   .About {
-    padding: 60px 8%;
+    padding: 60px clamp(24px, 6vw, 8%) 100px;
   }
 
   .About-title {
+    position: relative;
+    display: block;
     width: 100%;
-    max-width: none;
-    flex-direction: row;
-    align-items: center;
-    gap: 48px;
-    margin-top: 50px;
+    max-width: 1100px;
+    min-height: clamp(560px, 57vw, 720px);
+    margin: 50px auto 0;
   }
 
   .About-inner {
-    flex: 0 0 46%;
-    max-width: 520px;
-    align-items: flex-start;
+    position: absolute;
+    top: clamp(48px, 6vw, 72px);
+    left: 0;
+    z-index: 2;
+    display: block;
+    width: clamp(390px, 45vw, 500px);
+    max-width: 50%;
   }
 
   .About-maintitle {
-    width: fit-content;
-    margin: 0;
-    font-size: 2.8rem;
+    position: relative;
+    z-index: 2;
+    width: max-content;
+    max-width: none;
+    margin: 0 0 24px;
+    padding: 8px 14px;
+    font-size: clamp(2.2rem, 2.4vw, 3.2rem);
+    line-height: 1.5;
     white-space: nowrap;
   }
 
   .About-subtitle {
-    width: fit-content;
-    margin-top: 28px;
-    font-size: 1.6rem;
+    width: 100%;
+    margin: 0;
+    padding: clamp(16px, 2vw, 24px);
+    font-size: clamp(1.3rem, 1vw, 1.6rem);
+    line-height: 2.5;
+    box-sizing: border-box;
   }
 
   .About-images-wrapper {
-    width: auto;
-    flex: 1;
-    min-width: 0;
-    gap: 32px;
+    position: relative;
+    display: block;
+    width: min(68%, 720px);
+    margin-left: auto !important;
   }
 
   .About-images-wrapper img {
     width: 100% !important;
-    border-radius: 24px;
+    height: auto !important;
+    object-fit: cover;
   }
 
   .About-image-1 {
     width: 100% !important;
-    min-width: 0 !important;
-    max-width: 550px !important;
+    max-width: none !important;
     margin: 0;
-    z-index: 2;
+  }
+
+  .About-image-1 img {
+    border-radius: clamp(100px, 13vw, 160px);
   }
 
   .About-image-2 {
-    width: 70% !important;
-    min-width: 0 !important;
-    max-width: 350px !important;
-    margin-top: 0;
-    margin-left: auto;
-    margin-bottom: 0;
-    z-index: 1;
+    width: 54% !important;
+    max-width: none !important;
+    margin: 32px 0 0 auto;
+  }
+
+  .About-image-2 img {
+    border-radius: clamp(32px, 4vw, 52px);
   }
 
   /* Product */
@@ -1392,35 +1403,6 @@ button[type='submit']:disabled {
 /* ========================================
   PC幅の微調整
 ======================================== */
-@media screen and (min-width: 769px) and (max-width: 1599px) {
-  .About-maintitle {
-    white-space: normal;
-  }
-
-  .About-br {
-    display: inline;
-  }
-}
-
-@media screen and (min-width: 769px) and (max-width: 1530px) {
-  .About-maintitle {
-    font-size: 3rem;
-  }
-
-  .About-title {
-    gap: 32px;
-  }
-
-  .About-inner {
-    flex: 0 0 48%;
-    max-width: 500px;
-  }
-
-  .About-images-wrapper {
-    gap: 28px;
-  }
-}
-
 @media screen and (min-width: 769px) and (max-width: 1100px) {
   .nav-list {
     font-size: 1.3rem;
@@ -1483,16 +1465,6 @@ button[type='submit']:disabled {
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 970px) {
-  .About-image-1 {
-    max-width: 480px !important;
-  }
-
-  .About-image-2 {
-    max-width: 320px !important;
-  }
-}
-
 /* ========================================
   Small SP
 ======================================== */
@@ -1506,12 +1478,6 @@ button[type='submit']:disabled {
     max-width: 260px;
     margin: 0 auto;
     text-align: left;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .title-1 {
-    font-size: 2.2rem;
   }
 }
 
